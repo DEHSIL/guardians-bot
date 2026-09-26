@@ -65,11 +65,12 @@ async def main() -> None:
     )
     async with application(settings) as (bot, dispatcher):
         await bot.set_my_commands([
-            BotCommand(command="start", description="РќР°С‡Р°С‚СЊ СЂР°Р±РѕС‚Сѓ"),
-            BotCommand(command="register", description="РЎРѕР·РґР°С‚СЊ РїСЂРѕС„РёР»СЊ"),
-            BotCommand(command="profile", description="РњРѕР№ РїСЂРѕС„РёР»СЊ"),
+            BotCommand(command="start", description="Начать работу"),
+            BotCommand(command="register", description="Создать/редактировать профиль"),
+            BotCommand(command="change_role", description="Сменить роль"),
+            BotCommand(command="profile", description="Мой профиль"),
             BotCommand(command="cancel_sos", description="Отменить активный SOS"),
-            BotCommand(command="help", description="РЎРїСЂР°РІРєР°"),
+            BotCommand(command="help", description="Справка"),
         ])
         await bot.delete_webhook(drop_pending_updates=False)
         logger.info("Bot polling started")
