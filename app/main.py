@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 
 
 @asynccontextmanager
-async def application(settings: Settings) -> AsyncIterator[tuple[Bot, Dispatcher]]:
+async def setup_application(settings: Settings) -> AsyncIterator[tuple[Bot, Dispatcher]]:
     async with AsyncExitStack() as stack:
         redis: Redis = from_url(str(settings.redis_url), decode_responses=True)
         stack.push_async_callback(redis.aclose)
@@ -63,7 +63,7 @@ async def main() -> None:
         level=getattr(logging, settings.log_level.upper(), logging.INFO),
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
-    async with application(settings) as (bot, dispatcher):
+    async with setup_application(settings) as (bot, dispatcher):
         await bot.set_my_commands([
             BotCommand(command="start", description="Начать работу"),
             BotCommand(command="register", description="Создать/редактировать профиль"),

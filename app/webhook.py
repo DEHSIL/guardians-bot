@@ -9,7 +9,7 @@ from fastapi import FastAPI, Header, HTTPException, Request
 from pydantic import Field, SecretStr
 
 from app.core.config import Settings
-from app.main import application
+from app.main import setup_application
 
 
 class WebhookSettings(Settings):
@@ -19,7 +19,7 @@ class WebhookSettings(Settings):
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     settings = WebhookSettings()
-    async with application(settings) as (bot, dispatcher):
+    async with setup_application(settings) as (bot, dispatcher):
         app.state.bot = bot
         app.state.dispatcher = dispatcher
         app.state.webhook_secret = settings.webhook_secret.get_secret_value()

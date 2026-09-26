@@ -11,6 +11,9 @@ dependencies = [
     "pydantic==2.13.5"
 ]
 
+[tool.vercel]
+entrypoint = "api.index:app"
+
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"

@@ -2,7 +2,8 @@
 
 Импортируйте **этот репозиторий** как отдельный проект. Root Directory — корень
 репозитория (`.`), Framework Preset — FastAPI. Build Command и Output Directory
-оставьте стандартными. Точка входа `app.webhook:app` указана в `pyproject.toml`.
+оставьте стандартными. Точка входа `api.index:app` указана в `pyproject.toml`;
+`api/index.py` экспортирует FastAPI-приложение из `app.webhook`.
 Python — 3.13, зависимости — `requirements.txt`. Docker для Vercel не требуется.
 
 В Settings → Environment Variables задайте для Production:
