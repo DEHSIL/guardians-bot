@@ -1,0 +1,13 @@
+services:
+  bot:
+    build: .
+    restart: "on-failure:5"
+    env_file: .env
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      BACKEND_BASE_URL: http://guardians-api:8000
+    networks: [default, integration]
+networks:
+  integration:
+    external: true
+    name: guardians-integration
