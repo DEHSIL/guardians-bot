@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     bot_token: SecretStr = Field(validation_alias="BOT_TOKEN")
     redis_url: RedisDsn = Field(validation_alias="REDIS_URL")
     backend_base_url: AnyHttpUrl = Field(validation_alias="BACKEND_BASE_URL")
-    backend_api_token: SecretStr = Field(min_length=1, validation_alias="BACKEND_API_TOKEN")
+    # backend_api_token: SecretStr = Field(min_length=1, validation_alias="BACKEND_API_TOKEN")
     log_level: str = Field(default="INFO", validation_alias="LOG_LEVEL")
     request_timeout_seconds: float = Field(default=10.0, gt=0, validation_alias="REQUEST_TIMEOUT_SECONDS")
     rate_limit_requests: int = Field(default=5, ge=1, validation_alias="RATE_LIMIT_REQUESTS")

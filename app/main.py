@@ -32,7 +32,7 @@ async def setup_application(settings: Settings) -> AsyncIterator[tuple[Bot, Disp
         stack.push_async_callback(redis.aclose)
         await redis.ping()
         storage = RedisStorage(redis=redis, key_builder=DefaultKeyBuilder(prefix="guardians:bot:fsm", with_bot_id=True))
-        headers = {"Accept": "application/json", "X-API-Key": settings.backend_api_token.get_secret_value()}
+        headers = {"Accept": "application/json"}
         http_client = await stack.enter_async_context(httpx.AsyncClient(
             base_url=str(settings.backend_base_url).rstrip("/"),
             timeout=httpx.Timeout(settings.request_timeout_seconds), headers=headers,
