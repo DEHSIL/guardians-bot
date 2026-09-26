@@ -60,7 +60,7 @@ async def webhook(
     if not await redis.set(key, lock, nx=True, ex=90):
         raise HTTPException(status_code=503, detail="Update is already being processed")
     try:
-        async with asyncio.timeout(50):
+        async with asyncio.timeout(8):
             await dispatcher.feed_update(bot, update)
         await redis.set(key, "done", ex=86400)
     finally:
