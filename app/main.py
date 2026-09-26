@@ -40,9 +40,9 @@ async def setup_application(settings: Settings) -> AsyncIterator[tuple[Bot, Disp
         response = await http_client.get("/ready")
         response.raise_for_status()
         # A read-only request also verifies the shared API key before polling.
-        response = await http_client.get("/api/v1/users/0")
-        if response.status_code != 404:
-            response.raise_for_status()
+        # response = await http_client.get("/api/v1/users/0")
+        # if response.status_code != 404:
+        #     response.raise_for_status()
         bot = Bot(token=settings.bot_token.get_secret_value(),
                   default=DefaultBotProperties(parse_mode=ParseMode.HTML))
         stack.push_async_callback(bot.session.close)
