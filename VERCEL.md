@@ -4,6 +4,9 @@
 репозитория (`.`), Framework Preset — FastAPI. Build Command и Output Directory
 оставьте стандартными. Точка входа `api.index:app` указана в `pyproject.toml`;
 `api/index.py` экспортирует FastAPI-приложение из `app.webhook`.
+В `vercel.json` выбран framework `fastapi`: маршрутизацией занимается интеграция
+Vercel. Не добавляйте общий rewrite на `/api/index.py`, чтобы не подменять пути
+`/health` и `/telegram/webhook` перед обработкой FastAPI.
 Python — 3.13, зависимости — `requirements.txt`. Docker для Vercel не требуется.
 
 В Settings → Environment Variables задайте для Production:
